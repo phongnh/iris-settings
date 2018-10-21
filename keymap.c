@@ -65,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------.                        ,-----------------------------------------.
      * |  ~   |  !   |  @   |  #   |  $   |  %   |                        |  ^   |  &   |  *   |  (   |  )   | Bksp |
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
-     * |Capslk|  1   |  2   |  3   |  4   |  5   |                        |  6   |  7   |  8   |  9   |  0   | Del  |
+     * |  `   |  1   |  2   |  3   |  4   |  5   |                        |  6   |  7   |  8   |  9   |  0   | Del  |
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
-     * |      |  `   | Left | Right|  Up  |  [   |                        |  ]   |  4   |  5   |  6   |  +   |  |   |
+     * |Capslk|      | Left | Right|  Up  |  [   |                        |  ]   |  4   |  5   |  6   |  +   |  |   |
      * |------+------+------+------+------+------+------.          ,------+------+------+------+------+------+------|
      * |      |      |      |      | Down |  {   |  (   |          |  )   |  }   |  1   |  2   |  3   |  -   |      |
      * `------+------+------+------+------+------+------|          |------+------+------+------+------+------+------'
@@ -76,8 +76,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT(
         KC_TILD,        KC_EXLM,        KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,              KC_BSPC,
-        KC_CAPS,        KC_1,           KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                 KC_DEL,
-        _______,        KC_ESC,         KC_LEFT, KC_RGHT, KC_UP,   KC_LBRC,                            KC_RBRC, KC_P4,   KC_P5,   KC_P6,   KC_PLUS,              KC_PIPE,
+        KC_ESC,         KC_1,           KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                 KC_DEL,
+        KC_CAPS,        _______,        KC_LEFT, KC_RGHT, KC_UP,   KC_LBRC,                            KC_RBRC, KC_P4,   KC_P5,   KC_P6,   KC_PLUS,              KC_PIPE,
         _______,        _______,        _______, _______, KC_DOWN, KC_LCBR, KC_LPRN,          KC_RPRN, KC_RCBR, KC_P1,   KC_P2,   KC_P3,   KC_MINS,              _______,
                                                           _______, _______, _______,          KC_DEL,  _______, KC_P0
     ),
@@ -105,22 +105,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /*
      * ,-----------------------------------------.                        ,-----------------------------------------.
-     * | RESET|      |QWERTY| MOUSE|Normal| Swap |                        |Toggle| Prev | Play | Next | Mute | Vol- |
+     * | RESET| F14  | F15  |QWERTY| MOUSE|Normal|                        | Swap | Prev | Play | Next | Mute | Vol- |
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
-     * |      |      |      |  Up  |      |      |                        |      |      |  Up  |      |      | Vol+ |
+     * | RGBT |      |      |  Up  |      |      |                        |      |      |  Up  |      |      | Vol+ |
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
-     * |      |      | Left | Down | Right|      |                        |      | Left | Down | Right|      |      |
+     * | RGBM |      | Left | Down | Right|      |                        |      | Left | Down | Right|      | RGBM |
      * |------+------+------+------+------+------+------.          ,------+------+------+------+------+------+------|
-     * |      |      |      |      |      |      |      |          |      |      |      |      |      |      |      |
+     * |      |      | VAL- | SAT- | HUE- |      |      |          |      |      | HUE+ | SAT+ | VAL+ |      |      |
      * `------+------+------+------+------+------+------|          |------+------+------+------+------+------+------'
      *                             |      |      |      |          |      |      |      |
      *                             `------+------+------'          `-----'-------+------'
      */
     [_ADJUST] = LAYOUT(
-        RESET,          _______,        QWERTY,  MOUSE,   AG_NORM, AG_SWAP,                            AG_TOGG, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,              KC_VOLD,
-        _______,        _______,        _______, KC_UP,   _______, _______,                            _______, _______, KC_UP,   _______, _______,              KC_VOLU,
-        _______,        _______,        KC_LEFT, KC_DOWN, KC_RGHT, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,              _______,
-        _______,        _______,        _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______,              _______,
+        RESET,          KC_F14,         KC_F15,  QWERTY,  MOUSE,   AG_NORM,                            AG_SWAP, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,              KC_VOLD,
+        RGB_TOG,        _______,        _______, KC_UP,   _______, _______,                            _______, _______, KC_UP,   _______, _______,              KC_VOLU,
+        RGB_RMOD,       _______,        KC_LEFT, KC_DOWN, KC_RGHT, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,              RGB_MOD,
+        _______,        _______,        RGB_VAD, RGB_SAD, RGB_HUD, _______, _______,          _______, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______,              _______,
                                                           _______, _______, _______,          _______, _______, _______
     )
 };
