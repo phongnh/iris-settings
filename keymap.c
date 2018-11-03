@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
      * | RGBM |      | Left | Down | Right|      |                        |      | Left | Down | Right|      | RGBM |
      * |------+------+------+------+------+------+------.          ,------+------+------+------+------+------+------|
-     * |      |      | VAL- | SAT- | HUE- |      |      |          |      |      | HUE+ | SAT+ | VAL+ |      |      |
+     * |  BL  |      | VAL- | SAT- | HUE- |      |      |          |      |      | HUE+ | SAT+ | VAL+ |      | BRTG |
      * `------+------+------+------+------+------+------|          |------+------+------+------+------+------+------'
      *                             |      |      |      |          |      |      |      |
      *                             `------+------+------'          `-----'-------+------'
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET,          KC_F14,         KC_F15,  QWERTY,  MOUSE,   AG_NORM,                            AG_SWAP, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,              KC_VOLD,
         RGB_TOG,        _______,        _______, KC_UP,   _______, _______,                            _______, _______, KC_UP,   _______, _______,              KC_VOLU,
         RGB_RMOD,       _______,        KC_LEFT, KC_DOWN, KC_RGHT, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,              RGB_MOD,
-        _______,        _______,        RGB_VAD, RGB_SAD, RGB_HUD, _______, _______,          _______, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______,              _______,
+        BL_STEP,        _______,        RGB_VAD, RGB_SAD, RGB_HUD, _______, _______,          _______, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______,              BL_BRTG,
                                                           _______, _______, _______,          _______, _______, _______
     )
 };
