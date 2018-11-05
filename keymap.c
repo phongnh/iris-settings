@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "version.h"
 
 extern keymap_config_t keymap_config;
 
@@ -16,6 +17,8 @@ enum custom_keycodes {
     LOWER,
     RAISE,
     ADJUST,
+    EPRM,
+    VRSN,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -90,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
      * | RGBM |      | Left | Down | Right|      |                        |      | Left | Down | Right|      | RGBM |
      * |------+------+------+------+------+------+------.          ,------+------+------+------+------+------+------|
-     * |  BL  |      | VAL- | SAT- | HUE- |      |      |          |      |      | HUE+ | SAT+ | VAL+ |      | BRTG |
+     * |  BL  |      | VAL- | SAT- | HUE- |      | EPRM |          | VRSN |      | HUE+ | SAT+ | VAL+ |      | BRTG |
      * `------+------+------+------+------+------+------|          |------+------+------+------+------+------+------'
      *                             |      |      |      |          |      |      |      |
      *                             `------+------+------'          `------'------+------'
@@ -99,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET,          KC_F14,         KC_F15,  QWERTY,  MOUSE,   AG_NORM,                            AG_SWAP, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,              KC_VOLD,
         RGB_TOG,        _______,        _______, KC_UP,   _______, _______,                            _______, _______, KC_UP,   _______, _______,              KC_VOLU,
         RGB_RMOD,       _______,        KC_LEFT, KC_DOWN, KC_RGHT, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,              RGB_MOD,
-        BL_STEP,        _______,        RGB_VAD, RGB_SAD, RGB_HUD, _______, _______,          _______, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______,              BL_BRTG,
+        BL_STEP,        _______,        RGB_VAD, RGB_SAD, RGB_HUD, _______, EPRM,             VRSN,    _______, RGB_HUI, RGB_SAI, RGB_VAI, _______,              BL_BRTG,
                                                           _______, _______, _______,          _______, _______, _______
     ),
 
@@ -164,6 +167,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_on(_ADJUST);
             } else {
                 layer_off(_ADJUST);
+            }
+            return false;
+            break;
+        case EPRM:
+            if (record->event.pressed) {
+                eeconfig_init();
+            }
+            return false;
+            break;
+        case VRSN:
+            if (record->event.pressed) {
+                SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
             }
             return false;
             break;
