@@ -5,20 +5,20 @@ extern keymap_config_t keymap_config;
 
 enum iris_layers {
     _QWERTY,
-    _MOUSE,
     _LOWER,
     _RAISE,
     _ADJUST,
+    _MOUSE,
 };
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
-    MOUSE,
     LOWER,
     RAISE,
     ADJUST,
     EPRM,
     VRSN,
+    MOUSE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -30,17 +30,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                        |------+------+------+------+------+------|
      * | Ctrl |  A   |  S   |  D   |  F   |  G   |                        |  H   |  J   |  K   |  L   |  ;   |  "   |
      * |------+------+------+------+------+------+------.          ,------+------+------+------+------+------+------|
-     * | Shift|  Z   |  X   |  C   |  V   |  B   |  `   |          | Esc  |  N   |  M   |  ,   |  .   |  /   |Enter |
+     * | Shift|  Z   |  X   |  C   |  V   |  B   |  `   |          | Esc  |  N   |  M   |  ,   |  .   |  /   |Shift |
      * `------+------+------+------+------+------+------|          |------+------+------+------+------+------+------'
-     *                             | LGUI |LOWER |Enter |          |Space |RAISE | LALT |
+     *                             | LGUI |LOWER |Space |          |Enter |RAISE | LALT |
      *                             `------+------+------'          `------'------+------'
      */
     [_QWERTY] = LAYOUT(
         KC_EQL,         KC_1,           KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                 KC_MINS,
         KC_TAB,         KC_Q,           KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,                 KC_BSPC,
         CTL_T(KC_ESC) , KC_A,           KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    LT(_MOUSE, KC_SCLN),  RGUI_T(KC_QUOT),
-        KC_LSFT,        CTL_T(KC_Z),    KC_X,    KC_C,    KC_V,    KC_B,    LCAG_T(KC_GRV),   KC_ESC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_T(KC_SLSH),       RSFT_T(KC_ENT),
-                                                          KC_LGUI, LOWER,   KC_ENT,           KC_SPC,  RAISE,   KC_LALT
+        KC_LSFT,        CTL_T(KC_Z),    KC_X,    KC_C,    KC_V,    KC_B,    LCAG_T(KC_GRV),   KC_ESC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_T(KC_SLSH),       KC_RSFT,
+                                                          KC_LGUI, LOWER,   KC_SPC,           KC_ENT,  RAISE,   KC_LALT
     ),
 
     /*
@@ -136,12 +136,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case MOUSE:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_MOUSE);
-            }
-            return false;
-            break;
         case LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
@@ -167,6 +161,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_on(_ADJUST);
             } else {
                 layer_off(_ADJUST);
+            }
+            return false;
+            break;
+        case MOUSE:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_MOUSE);
             }
             return false;
             break;
