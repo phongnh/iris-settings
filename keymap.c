@@ -12,7 +12,8 @@ enum iris_layers {
 };
 
 enum iris_keycodes {
-    EPRM = SAFE_RANGE,
+    PLACEHOLDER = SAFE_RANGE,
+    EPRM,
     VRSN,
     QWERTY,
     LOWER,
